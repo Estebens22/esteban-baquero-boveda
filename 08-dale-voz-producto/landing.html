@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dale voz a tu producto (STT + TTS) · La Bóveda · Esteban Baquero</title>
+<meta name="description" content="Que tu producto escuche y hable: reconocimiento de voz + síntesis, con voz responsable. Guía + código ejecutable sin dependencias.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dale voz a tu producto (STT + TTS) — La Bóveda de Esteban Baquero">
+<meta property="og:description" content="Habla→texto→lógica→texto→habla: un pipeline de voz que corre sin instalar nada, con compuerta de consentimiento.">
+<meta property="og:url" content="https://estebanbaquero.com/la-boveda">
+<link rel="stylesheet" href="../assets/boveda.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">La Bóveda · Voz</div>
+    <h1>Dale voz a tu producto.</h1>
+    <p class="lead">Que tu producto <b style="color:#fff">escuche y hable</b>: reconocimiento de voz (STT) + síntesis (TTS) + el flujo que los une — con voz responsable. Corre en 10 segundos, sin instalar nada.</p>
+    <div><span class="tag">Python</span><span class="tag">STT + TTS</span><span class="tag">Sin dependencias</span><span class="tag">Experimento</span></div>
+    <div class="cta">
+      <a class="btn p" href="esteban-baquero-playbook-voz-v1.0.zip" download>⬇ Descargar el kit</a>
+      <a class="btn g" href="README.md">Ver la guía</a>
+    </div>
+  </div>
+</header>
+<div class="bar"></div>
+<main>
+  <section>
+    <h2><span class="n">01</span>La idea</h2>
+    <p>La voz no es magia: es un <b>pipeline</b> que puedes correr y medir pieza por pieza. El audio entra, se vuelve texto, tu lógica decide, y la respuesta sale hablada.</p>
+    <pre><button class="copy">copiar</button><code>audio → [STT: habla→texto] → [tu lógica] → respuesta → [TTS: texto→habla] → audio</code></pre>
+  </section>
+  <section>
+    <h2><span class="n">02</span>Corre el ejemplo en 10 segundos</h2>
+    <p>El kit trae <code>voz.py</code> — <b>solo librería estándar</b>:</p>
+    <pre><button class="copy">copiar</button><code>cd kit
+python3 voz.py --demo
+python3 voz.py "hola, ¿qué puedes hacer?"</code></pre>
+    <p>Sin API key corre en modo <b>MOCK</b>: el TTS escribe un <code>.wav</code> real (un tono por palabra) y el STT recupera el texto. Con <code>OPENAI_API_KEY</code>, Whisper transcribe y la API sintetiza de verdad — tras la misma interfaz.</p>
+  </section>
+  <section>
+    <h2><span class="n">03</span>Las 3 piezas que importan</h2>
+    <h3>STT: habla → texto</h3>
+    <p>Una sola interfaz, <code>transcribir(wav)</code>. El mock es el andamio; el modo real es Whisper (API o local) sin tocar tu flujo.</p>
+    <h3>TTS: texto → habla, con consentimiento</h3>
+    <p>Usar una voz identificable exige <code>consentimiento=True</code>. Sin permiso, la síntesis se bloquea — a propósito.</p>
+    <h3>El flujo de conversación</h3>
+    <p>Un turno completo: STT → tu lógica (aquí enchufas tu LLM/agente) → TTS. El contrato no cambia cuando subes de mock a modelo real.</p>
+  </section>
+  <section>
+    <h2><span class="n">04</span>Voz responsable</h2>
+    <p>Consentimiento antes de clonar, etiquetar lo sintético, tratar el audio como dato personal y cero suplantación. La guía <code>VOZ-RESPONSABLE.md</code> lo resume en cuatro reglas — y la compuerta del kit aplica la primera por ti.</p>
+  </section>
+  <section class="ok" style="border-radius:16px;border:1px solid #d7f0df">
+    <h2><span class="n">05</span>Llévatelo</h2>
+    <p>Kit con <code>voz.py</code>, la guía de voz responsable y la comparativa de opciones (local vs API). Enciende tu API key o conecta Whisper local y el mismo flujo habla de verdad.</p>
+    <div class="cta"><a class="btn p" href="esteban-baquero-playbook-voz-v1.0.zip" download>⬇ Descargar el kit (.zip)</a></div>
+  </section>
+</main>
+<div class="bar"></div>
+<footer>
+  <p><b>Esteban Baquero</b> — De una idea a un sistema que funciona.</p>
+  <p style="margin-top:8px"><a href="https://estebanbaquero.com">estebanbaquero.com</a> · ¿Te sirvió? <a href="https://github.com/Estebens22">Sígueme y dale ⭐ en GitHub</a></p>
+</footer>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    navigator.clipboard.writeText(b.parentElement.querySelector('code').innerText).then(function(){b.textContent='copiado ✓';setTimeout(function(){b.textContent='copiar'},1500)});
+  });
+});
+</script>
+</body>
+</html>
