@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frank — compañero de escritorio con IA · La Bóveda · Esteban Baquero</title>
+<meta name="description" content="Un robot de escritorio que te mira, te escucha y te habla. Impresión 3D + ESP32 + IA. Guía + BOM + planos + firmware + cerebro que corre sin instalar nada.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Frank — compañero de escritorio con IA — La Bóveda de Esteban Baquero">
+<meta property="og:description" content="Hardware + IA: construye a Frank, una cabeza que te mira, reacciona a tu voz y te habla. BOM, planos, firmware y cerebro en Python puro.">
+<meta property="og:url" content="https://estebanbaquero.com/boveda/frank-robot-escritorio.html">
+<link rel="stylesheet" href="../assets/boveda.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">La Bóveda · Hardware + IA</div>
+    <h1>Frank, tu compañero de escritorio.</h1>
+    <p class="lead">De un modelo que solo chatea a un compañero físico que te mira, reacciona a tu voz y te habla. Impresión 3D + un ESP32 + IA. Y el cerebro corre en 10 segundos — sin instalar nada.</p>
+    <div><span class="tag">ESP32</span><span class="tag">Impresión 3D</span><span class="tag">Python</span><span class="tag">IA</span><span class="tag">En producción</span></div>
+    <div class="cta">
+      <a class="btn p" href="esteban-baquero-playbook-frank-v1.0.zip" download>⬇ Descargar el kit</a>
+      <a class="btn g" href="README.md">Ver la guía</a>
+    </div>
+  </div>
+</header>
+<div class="bar"></div>
+<main>
+  <section>
+    <h2><span class="n">01</span>La idea</h2>
+    <p>El <b>cerebro</b> vive en tu PC y decide la reacción; el <b>firmware</b> del ESP32 solo la ejecuta en el mundo físico. Lo <b>determinista</b> (hacia dónde mira, color de los ojos) va en código; el <b>criterio</b> (qué dice) lo pone el modelo.</p>
+    <pre><button class="copy">copiar</button><code>sonido / te llama → [cerebro] → S&lt;ángulo&gt; L&lt;color&gt; "&lt;frase&gt;" → [ESP32]
+   micrófono        decide          comando por serial        servo + ojos + voz</code></pre>
+  </section>
+  <section>
+    <h2><span class="n">02</span>Pruébalo sin comprar nada</h2>
+    <p>El cerebro es <code>frank.py</code> — <b>solo librería estándar de Python</b>. Corre el self-check y simula eventos:</p>
+    <pre><button class="copy">copiar</button><code>cd kit
+python3 frank.py --demo              # valida el mapeo evento -&gt; reacción
+python3 frank.py name_called         # te mira de frente, ojos atentos
+python3 frank.py speech --level 0.8  # voz animada: gira y se pone alegre</code></pre>
+    <p>Para que la frase la escriba el modelo, exporta tu <code>OPENAI_API_KEY</code> (cualquier API estilo OpenAI). Sin ella, usa frases de muestra.</p>
+  </section>
+  <section>
+    <h2><span class="n">03</span>Las 3 decisiones que importan</h2>
+    <h3>Lo determinista en el hardware, el criterio en la IA</h3>
+    <p>Hacia dónde mira y de qué color se pone lo calcula el código. Qué dice lo pone el modelo. Si la IA falla, Frank igual hace su gesto — no se queda roto.</p>
+    <h3>El cerebro piensa, el firmware obedece</h3>
+    <p>El ESP32 lee el micrófono, avisa y ejecuta comandos <code>S&lt;ángulo&gt; L&lt;color&gt; "&lt;frase&gt;"</code>. Depuras el comportamiento sin reprogramar el chip.</p>
+    <h3>Calibra el mundo físico</h3>
+    <p>Un servo queda torcido, un micrófono lee distinto en cada cuarto. El kit deja las perillas a la vista: <code>SERVO_TRIM</code>, <code>MIC_BASELINE</code>, <code>MIC_TRIGGER</code>.</p>
+  </section>
+  <section>
+    <h2><span class="n">04</span>Qué compras y cómo lo cableas</h2>
+    <ul>
+      <li>ESP32 + servo SG90 + anillo NeoPixel (los ojos) + módulo de micrófono. <b>~25–30 USD</b> en total.</li>
+      <li>La <b>BOM</b> completa y el <b>pinout</b> vienen en el kit (<code>BOM.md</code>, <code>pinout.md</code>).</li>
+      <li>La carcasa es dos piezas en PLA: base (aloja la electrónica) y cabeza (encastra en el servo).</li>
+      <li>Masa común a todo y una línea de 5 V propia para el servo (tironea la fuente).</li>
+    </ul>
+  </section>
+  <section class="ok" style="border-radius:16px;border:1px solid #d7f0df">
+    <h2><span class="n">05</span>Llévatelo</h2>
+    <p>Kit con el cerebro (<code>frank.py</code>), el firmware comentado, la BOM, el pinout y la guía. Combínalo con <b>Dale voz a tu producto (STT + TTS)</b> para que Frank escuche y hable de verdad.</p>
+    <div class="cta"><a class="btn p" href="esteban-baquero-playbook-frank-v1.0.zip" download>⬇ Descargar el kit (.zip)</a></div>
+  </section>
+</main>
+<div class="bar"></div>
+<footer>
+  <p><b>Esteban Baquero</b> — De una idea a un sistema que funciona.</p>
+  <p style="margin-top:8px"><a href="https://estebanbaquero.com">estebanbaquero.com</a> · ¿Te sirvió? <a href="https://github.com/Estebens22">Sígueme y dale ⭐ en GitHub</a></p>
+</footer>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    navigator.clipboard.writeText(b.parentElement.querySelector('code').innerText).then(function(){b.textContent='copiado ✓';setTimeout(function(){b.textContent='copiar'},1500)});
+  });
+});
+</script>
+</body>
+</html>
