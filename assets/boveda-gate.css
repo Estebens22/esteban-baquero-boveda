@@ -1,0 +1,24 @@
+/* Popup de captura de la Bóveda + toast de bienvenida */
+#ebg-ov{position:fixed;inset:0;z-index:99998;background:rgba(38,40,43,.72);display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;transition:opacity .25s}
+#ebg-ov.on{opacity:1}
+#ebg-card{background:#fff;border-radius:20px;max-width:440px;width:100%;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.35);transform:translateY(10px);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+#ebg-ov.on #ebg-card{transform:none}
+.ebg-h{background:#26282b;color:#fff;padding:22px 26px}
+.ebg-h .m{display:inline-block;background:#b5fe00;color:#26282b;font-weight:800;border-radius:9px;padding:4px 10px 7px;font-size:18px}
+.ebg-h h3{margin:12px 0 2px;font-size:21px;font-weight:800;color:#fff}
+.ebg-h p{margin:0;color:#c9ced6;font-size:13px}
+.ebg-bar{height:6px;background:linear-gradient(90deg,#0061fe 40%,#b5fe00 40% 70%,#fef600 70%)}
+.ebg-b{padding:22px 26px}
+.ebg-b label{display:block;font-weight:700;font-size:13px;color:#323232;margin:12px 0 4px}
+.ebg-b input[type=text],.ebg-b input[type=email]{width:100%;box-sizing:border-box;border:1px solid #d7dce2;border-radius:12px;padding:12px 14px;font-size:15px;outline:none}
+.ebg-b input:focus{border-color:#0061fe}
+.ebg-chk{display:flex;gap:8px;align-items:flex-start;margin-top:14px;font-size:13px;color:#5b6675}
+.ebg-row{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.ebg-row button{flex:1;min-width:140px;border:0;border-radius:999px;padding:13px;font-weight:700;font-size:15px;cursor:pointer}
+#ebg-go{background:#0061fe;color:#fff}#ebg-mail{background:#eef0f2;color:#323232}
+.ebg-x{position:absolute;top:12px;right:14px;background:none;border:0;color:#fff;font-size:22px;cursor:pointer;line-height:1}
+.ebg-err{color:#c0392b;font-size:13px;min-height:16px;margin-top:8px}
+#ebg-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#26282b;color:#fff;padding:13px 20px;border-radius:999px;font-weight:600;font-size:15px;z-index:99999;opacity:0;transition:all .3s;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+#ebg-toast.on{opacity:1;transform:translateX(-50%)}
+#ebg-toast b{color:#b5fe00}
+@media(prefers-reduced-motion:reduce){#ebg-ov,#ebg-card,#ebg-toast{transition:none}}
