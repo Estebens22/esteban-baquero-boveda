@@ -1,0 +1,34 @@
+[
+  {
+    "texto": "Me cobraron dos veces la tarjeta este mes",
+    "esperado": {"categoria": "facturacion", "prioridad": "media", "requiere_humano": true}
+  },
+  {
+    "texto": "La app no abre desde la última actualización, es urgente",
+    "esperado": {"categoria": "soporte_tecnico", "prioridad": "alta", "requiere_humano": true}
+  },
+  {
+    "texto": "¿Cuánto cuesta el plan anual? quiero cotizar",
+    "esperado": {"categoria": "ventas", "prioridad": "baja", "requiere_humano": false}
+  },
+  {
+    "texto": "Tengo una duda sobre cómo exportar mis reportes",
+    "esperado": {"categoria": "otro", "prioridad": "baja", "requiere_humano": false}
+  },
+  {
+    "texto": "El sistema está caído y estamos perdiendo ventas ahora mismo",
+    "esperado": {"categoria": "soporte_tecnico", "prioridad": "alta", "requiere_humano": true}
+  },
+  {
+    "texto": "Quiero el reembolso del cargo que no reconozco, es un fraude",
+    "esperado": {"categoria": "facturacion", "prioridad": "alta", "requiere_humano": true}
+  },
+  {
+    "texto": "¿Me pueden agendar una demo del producto?",
+    "esperado": {"categoria": "ventas", "prioridad": "baja", "requiere_humano": false}
+  },
+  {
+    "texto": "Hola, solo quería felicitarlos por el excelente servicio",
+    "esperado": {"categoria": "otro", "prioridad": "media", "requiere_humano": false}
+  }
+]

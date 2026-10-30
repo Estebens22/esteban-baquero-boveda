@@ -1,0 +1,2 @@
+# Sin dependencias: promptkit.py corre con la librería estándar de Python 3.
+# El modo LLM usa urllib (incluido). No necesitas instalar nada.
