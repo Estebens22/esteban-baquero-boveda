@@ -1,0 +1,51 @@
+{
+  "_comentario": "Reglas de decisión del backoffice. Se evalúan EN ORDEN; la primera cuyas condiciones (si: TODAS) se cumplan, gana. Operadores: contiene | igual | mayor | menor | en. No necesitás tocar código: editá este archivo.",
+  "reglas": [
+    {
+      "nombre": "factura-alta-aprobacion",
+      "si": [
+        { "campo": "tipo", "op": "igual", "valor": "factura" },
+        { "campo": "monto", "op": "mayor", "valor": 1000000 }
+      ],
+      "entonces": {
+        "accion": "escalar",
+        "mensaje": "Factura de {proveedor} por {monto} supera el tope — requiere aprobación."
+      }
+    },
+    {
+      "nombre": "soporte-urgente",
+      "si": [
+        { "campo": "asunto", "op": "contiene", "valor": "urgente" }
+      ],
+      "entonces": {
+        "accion": "avisar",
+        "mensaje": "Caso urgente de {remitente}: {asunto}. Ping inmediato a soporte."
+      }
+    },
+    {
+      "nombre": "factura-normal-registrar",
+      "si": [
+        { "campo": "tipo", "op": "igual", "valor": "factura" }
+      ],
+      "entonces": {
+        "accion": "registrar",
+        "mensaje": "Registrar factura de {proveedor} ({monto}) en el ERP."
+      }
+    },
+    {
+      "nombre": "solicitud-info",
+      "si": [
+        { "campo": "tipo", "op": "igual", "valor": "correo" },
+        { "campo": "asunto", "op": "contiene", "valor": "cotizacion" }
+      ],
+      "entonces": {
+        "accion": "responder",
+        "mensaje": "Responder a {remitente} con la plantilla de cotización."
+      }
+    }
+  ],
+  "default": {
+    "accion": "revisar",
+    "mensaje": "Sin regla que aplique — va a la cola de revisión manual."
+  }
+}
