@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lleva tu proyecto a producción · La Bóveda · Esteban Baquero</title>
+<meta name="description" content="De 'me funciona en mi máquina' a un sitio en vivo con HTTPS, dominio propio y alertas. Contenedor + reverse-proxy con TLS. Guía + kit descargable.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lleva tu proyecto a producción — La Bóveda de Esteban Baquero">
+<meta property="og:description" content="Contenedor, dominio, TLS y monitoreo. Guía honesta + kit descargable.">
+<meta property="og:url" content="https://estebanbaquero.com/boveda/lleva-tu-proyecto-a-produccion.html">
+<link rel="stylesheet" href="../assets/boveda.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">La Bóveda · Infra</div>
+    <h1>Lleva tu proyecto a producción.</h1>
+    <p class="lead">De "me funciona en mi máquina" a un sitio en vivo con HTTPS, dominio propio y aviso cuando algo se cae. El patrón real con el que vive esta misma web — sin plataformas caras ni magia.</p>
+    <div><span class="tag">Docker</span><span class="tag">Caddy · TLS</span><span class="tag">DNS</span><span class="tag">En producción</span></div>
+    <div class="cta">
+      <a class="btn p" href="esteban-baquero-playbook-produccion-v1.0.zip" download>⬇ Descargar el kit</a>
+      <a class="btn g" href="README.md">Ver la guía</a>
+    </div>
+  </div>
+</header>
+<div class="bar"></div>
+<main>
+  <section>
+    <h2><span class="n">01</span>Qué vas a lograr</h2>
+    <p>El camino completo: <b>Dockerfile → contenedor → reverse-proxy con TLS → dominio → logs limitados → healthcheck</b>. Al terminar, tu app está en vivo con HTTPS y dominio propio, y sabés exactamente qué parte es del servidor, del DNS y del contenedor.</p>
+  </section>
+  <section>
+    <h2><span class="n">02</span>Deploy en un comando</h2>
+    <p>El kit trae <code>deploy.sh</code>: build, run con <b>restart automático</b> y <b>logs limitados</b>, y healthcheck.</p>
+    <pre><button class="copy">copiar</button><code>./deploy.sh mi-app 8080</code></pre>
+    <h3>La clave anti-403</h3>
+    <p>nginx corre como usuario no-root; si los archivos vienen con permisos <code>600</code>, da <b>403</b>. Esto lo evita:</p>
+    <pre><button class="copy">copiar</button><code>RUN chmod -R a+rX /usr/share/nginx/html</code></pre>
+    <div class="note">Límite de logs obligatorio: un contenedor que loguea sin tope <b>llena el disco</b> y tumba todo. Por eso corre con <code>--log-opt max-size=10m --log-opt max-file=3</code>.</div>
+  </section>
+  <section>
+    <h2><span class="n">03</span>Dominio + TLS automático</h2>
+    <p>Apuntá un registro <b>A</b> de tu dominio a la IP del servidor (DNS-only si usás Cloudflare, para el challenge). Luego, el bloque de Caddy:</p>
+    <pre><button class="copy">copiar</button><code>tu-dominio.com, www.tu-dominio.com {
+	encode gzip
+	reverse_proxy 127.0.0.1:8080
+}</code></pre>
+    <p>El certificado Let's Encrypt se emite solo al primer hit. Verificá <b>en vivo</b>, no contra el pipeline:</p>
+    <pre><button class="copy">copiar</button><code>curl -s -o /dev/null -w "%{http_code}\n" https://tu-dominio.com/</code></pre>
+  </section>
+  <section>
+    <h2><span class="n">04</span>Errores clásicos</h2>
+    <table>
+      <tr><th>Síntoma</th><th>Causa</th><th>Solución</th></tr>
+      <tr><td>403 en todo</td><td>permisos 600</td><td>chmod -R a+rX</td></tr>
+      <tr><td>Cert no emite</td><td>DNS / puerto 80</td><td>A correcto + DNS-only + 80/443</td></tr>
+      <tr><td>Disco al 100%</td><td>logs sin límite</td><td>--log-opt max-size + truncar</td></tr>
+      <tr><td>Contenedor en loop</td><td>la app crashea</td><td>docker logs &lt;nombre&gt;</td></tr>
+      <tr><td>Redeploy tumba prod</td><td>sin rollback</td><td>imagen anterior / git revert</td></tr>
+    </table>
+  </section>
+  <section class="ok" style="border-radius:16px;border:1px solid #d7f0df">
+    <h2><span class="n">05</span>Llevátelo</h2>
+    <p>Kit completo: <code>deploy.sh</code>, <code>Dockerfile.example</code>, <code>Caddyfile.snippet</code>, <code>.env.example</code> y el checklist de producción.</p>
+    <div class="cta"><a class="btn p" href="esteban-baquero-playbook-produccion-v1.0.zip" download>⬇ Descargar el kit (.zip)</a></div>
+  </section>
+</main>
+<div class="bar"></div>
+<footer>
+  <p><b>Esteban Baquero</b> — De una idea a un sistema que funciona.</p>
+  <p style="margin-top:8px"><a href="https://estebanbaquero.com">estebanbaquero.com</a> · ¿Te sirvió? <a href="https://github.com/Estebens22">Seguime y dale ⭐ en GitHub</a></p>
+</footer>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var code=b.parentElement.querySelector('code').innerText;
+    navigator.clipboard.writeText(code).then(function(){b.textContent='copiado ✓';setTimeout(function(){b.textContent='copiar'},1500)});
+  });
+});
+</script>
+</body>
+</html>

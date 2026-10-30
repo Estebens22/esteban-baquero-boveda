@@ -1,0 +1,6 @@
+# Ejemplo: servir un sitio estático. Ajusta a tu app.
+FROM nginx:1.27-alpine
+COPY . /usr/share/nginx/html/
+# Evita 403: nginx corre como usuario no-root y necesita poder leer todo.
+RUN rm -f /usr/share/nginx/html/Dockerfile.example && chmod -R a+rX /usr/share/nginx/html
+EXPOSE 80

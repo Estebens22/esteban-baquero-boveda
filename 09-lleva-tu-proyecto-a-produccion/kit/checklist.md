@@ -1,0 +1,11 @@
+# Checklist antes de producción
+- [ ] Dockerfile construye local (`docker build`) sin errores.
+- [ ] Contenedor levanta y responde (`deploy.sh`).
+- [ ] Permisos: `chmod -R a+rX` en lo servido (evita 403 de nginx no-root).
+- [ ] Límite de logs del contenedor (`--log-opt max-size=10m --log-opt max-file=3`) → evita disco al 100%.
+- [ ] `--restart unless-stopped` para que reviva tras reinicio.
+- [ ] DNS A -> IP del servidor (DNS-only si Cloudflare, para el challenge de TLS).
+- [ ] Reverse-proxy con TLS automático (Caddy) emite certificado.
+- [ ] Healthcheck (curl del dominio en HTTPS) responde 200.
+- [ ] Rollback escrito ANTES (imagen anterior o `git revert` + redeploy).
+- [ ] Ningún secreto en el repo/imagen (usa variables de entorno).

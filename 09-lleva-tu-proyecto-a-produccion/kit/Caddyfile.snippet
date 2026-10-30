@@ -1,0 +1,6 @@
+# TLS automático (Let's Encrypt) + reverse-proxy al contenedor.
+# DNS: A de tu-dominio.com y www -> IP del servidor (DNS-only si usas Cloudflare, para que Caddy emita el cert).
+tu-dominio.com, www.tu-dominio.com {
+	encode gzip
+	reverse_proxy 127.0.0.1:8080
+}
