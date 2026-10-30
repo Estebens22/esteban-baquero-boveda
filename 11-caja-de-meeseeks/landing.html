@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caja de Meeseeks — ayudante de voz de una sola tarea · La Bóveda · Esteban Baquero</title>
+<meta name="description" content="Aprietas el botón, aparece un holograma, le pides UNA cosa, la resuelve y se despide. ESP32 + Pepper's ghost + IA. Guía + BOM + planos + firmware + cerebro que corre sin instalar nada. Proyecto fan.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Caja de Meeseeks — ayudante de voz de una sola tarea — La Bóveda de Esteban Baquero">
+<meta property="og:description" content="Hardware + IA: una caja con botón y holograma que resuelve UNA tarea y desaparece. ESP32 + Pepper's ghost + firmware STT→IA→TTS. BOM, planos y cerebro en Python puro.">
+<meta property="og:url" content="https://estebanbaquero.com/boveda/caja-de-meeseeks.html">
+<link rel="stylesheet" href="../assets/boveda.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">La Bóveda · Hardware + IA</div>
+    <h1>Caja de Meeseeks.</h1>
+    <p class="lead">Aprietas el botón, aparece un ayudante dentro del cilindro, le pides UNA cosa, la resuelve y se despide. Como un Meeseeks: existe para una sola tarea y luego deja de existir. ESP32 + Pepper's ghost + IA. El cerebro corre en 10 segundos — sin instalar nada.</p>
+    <div><span class="tag">ESP32</span><span class="tag">Pepper's ghost</span><span class="tag">Impresión 3D</span><span class="tag">Python</span><span class="tag">IA</span><span class="tag">Experimento</span></div>
+    <div class="cta">
+      <a class="btn p" href="esteban-baquero-playbook-meeseeks-v1.0.zip" download>⬇ Descargar el kit</a>
+      <a class="btn g" href="README.md">Ver la guía</a>
+    </div>
+  </div>
+</header>
+<div class="bar"></div>
+<main>
+  <section>
+    <h2><span class="n">01</span>La idea</h2>
+    <p>El <b>cerebro</b> vive en tu PC y maneja el ciclo de vida; el <b>firmware</b> del ESP32 solo detecta el botón y enciende/apaga el holograma. Lo <b>determinista</b> (el ciclo, el tope de intentos) va en código; el <b>criterio</b> (resolver la tarea) lo pone el modelo.</p>
+    <pre><button class="copy">copiar</button><code>botón → [firmware: EVENT button] → [cerebro] → H1 (aparece) → escucha → IA resuelve → H0 (se va)
+ arcade        ESP32              máquina de estados   holograma    STT       criterio     holograma</code></pre>
+  </section>
+  <section>
+    <h2><span class="n">02</span>Pruébalo sin comprar nada</h2>
+    <p>El cerebro es <code>meeseeks.py</code> — <b>solo librería estándar de Python</b>. Corre el self-check y un ciclo completo:</p>
+    <pre><button class="copy">copiar</button><code>cd kit
+python3 meeseeks.py --demo                 # valida el ciclo de vida (una tarea, siempre termina)
+python3 meeseeks.py "cuanto es 12% de 80"  # aparece, resuelve y desaparece</code></pre>
+    <p>Para que la tarea la resuelva el modelo, exporta tu <code>OPENAI_API_KEY</code> (cualquier API estilo OpenAI). Sin ella, respuestas de muestra — y calcula porcentajes de verdad.</p>
+  </section>
+  <section>
+    <h2><span class="n">03</span>Las 2 decisiones que importan</h2>
+    <h3>Una sola tarea, y siempre termina</h3>
+    <p>El ciclo de vida es una máquina de estados determinista: nunca vuelve a escuchar en la misma sesión y, resuelva o no, SIEMPRE se despide. El tope <code>MAX_ATTEMPTS</code> evita el bucle infinito — un Meeseeks no sufre para siempre. Lo verifica el <code>--demo</code>.</p>
+    <h3>El cerebro decide, el firmware obedece</h3>
+    <p>El ESP32 solo ve el botón y dos comandos de holograma (<code>H1</code>/<code>H0</code>). Depuras todo el comportamiento desde el PC sin reprogramar el chip.</p>
+  </section>
+  <section>
+    <h2><span class="n">04</span>Qué compras y cómo lo montas</h2>
+    <ul>
+      <li>ESP32 + botón arcade de 60 mm + lámina transparente para el Pepper's ghost + una tira LED o pantalla + micrófono. <b>~35–45 USD</b> en total.</li>
+      <li>La <b>BOM</b> completa y el <b>pinout</b> vienen en el kit (<code>BOM.md</code>, <code>pinout.md</code>), con los <b>3 caminos de holograma</b> (LED, pantalla, pirámide de 4 caras).</li>
+      <li>El holograma es una lámina a 45° que refleja una imagen; con el interior del cilindro en negro mate, el fantasma resalta.</li>
+      <li>La luz del holograma se controla con un MOSFET/relé, no directo desde el pin del ESP32.</li>
+    </ul>
+  </section>
+  <section class="ok" style="border-radius:16px;border:1px solid #d7f0df">
+    <h2><span class="n">05</span>Llévatelo</h2>
+    <p>Kit con el cerebro (<code>meeseeks.py</code>), el firmware comentado, la BOM, el pinout y la guía. Combínalo con <b>Dale voz a tu producto (STT + TTS)</b> para que el ayudante escuche y hable de verdad. Interpretación fan, educativa, no comercial.</p>
+    <div class="cta"><a class="btn p" href="esteban-baquero-playbook-meeseeks-v1.0.zip" download>⬇ Descargar el kit (.zip)</a></div>
+  </section>
+</main>
+<div class="bar"></div>
+<footer>
+  <p><b>Esteban Baquero</b> — De una idea a un sistema que funciona.</p>
+  <p style="margin-top:8px"><a href="https://estebanbaquero.com">estebanbaquero.com</a> · ¿Te sirvió? <a href="https://github.com/Estebens22">Sígueme y dale ⭐ en GitHub</a></p>
+</footer>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    navigator.clipboard.writeText(b.parentElement.querySelector('code').innerText).then(function(){b.textContent='copiado ✓';setTimeout(function(){b.textContent='copiar'},1500)});
+  });
+});
+</script>
+</body>
+</html>
