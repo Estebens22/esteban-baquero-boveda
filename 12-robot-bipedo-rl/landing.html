@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robot bípedo que aprende con IA · La Bóveda · Esteban Baquero</title>
+<meta name="description" content="Cómo construir un robot bípedo pequeño que aprende a caminar con IA (RL sim-to-real), como los de NVIDIA. Demo de RL ejecutable sin GPU, BOM, planos y firmware.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Robot bípedo que aprende con IA — La Bóveda de Esteban Baquero">
+<meta property="og:description" content="Entrena la marcha en simulación con reinforcement learning y bájala al robot real. Demo que corre sin GPU.">
+<meta property="og:url" content="https://estebanbaquero.com/la-boveda">
+<link rel="stylesheet" href="../assets/boveda.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">La Bóveda · Hardware + IA</div>
+    <h1>Robot bípedo que aprende a caminar con IA.</h1>
+    <p class="lead">Un bípedo pequeño no se programa paso a paso: <b style="color:#fff">aprende</b> en un simulador con <i>reinforcement learning</i> y esa política se baja al robot real. Es la movida de NVIDIA (Isaac Lab), en chiquito y barato. Con un demo del bucle de RL que corre en 10 segundos — sin GPU.</p>
+    <div><span class="tag">Python</span><span class="tag">Reinforcement Learning</span><span class="tag">Sim-to-real</span><span class="tag">Experimento</span></div>
+    <div class="cta">
+      <a class="btn p" href="esteban-baquero-playbook-robot-bipedo-v1.0.zip" download>⬇ Descargar el kit</a>
+      <a class="btn g" href="README.md">Ver la guía</a>
+    </div>
+  </div>
+</header>
+<div class="bar"></div>
+<main>
+  <section>
+    <h2><span class="n">01</span>La idea</h2>
+    <p>Una <b>política</b> propone acciones, el <b>simulador</b> la premia por no caerse y avanzar, y un optimizador la <b>mejora</b> miles de veces. La política entrenada se transfiere al hardware (<b>sim-to-real</b>).</p>
+    <pre><button class="copy">copiar</button><code>política → [simulador premia/castiga] → mejora ×miles → política entrenada → robot real</code></pre>
+  </section>
+  <section>
+    <h2><span class="n">02</span>Corre el bucle de RL en 10 segundos</h2>
+    <p>El kit trae <code>gait.py</code> — <b>solo librería estándar</b>. Entrena con <b>CEM</b> una política que equilibra (el primer ladrillo de la marcha):</p>
+    <pre><button class="copy">copiar</button><code>cd kit
+python3 gait.py --demo
+python3 deploy.py --demo</code></pre>
+    <p>El demo compara una política <b>al azar</b> (≈31/500 pasos en pie) contra la <b>aprendida</b> (500/500). El bucle de RL funciona de verdad, sin GPU.</p>
+  </section>
+  <section>
+    <h2><span class="n">03</span>El pipeline real</h2>
+    <h3>Modela el robot</h3>
+    <p>URDF/MJCF con medidas, masas y articulaciones.</p>
+    <h3>Entrena en simulación</h3>
+    <p><b>MuJoCo</b> o <b>NVIDIA Isaac Lab</b> con <b>PPO</b>, miles de robots en paralelo. Recompensa = avanzar + no caerse + suave.</p>
+    <h3>Domain randomization</h3>
+    <p>Varía fricción, masa y retardo de servos en el sim para que la política aguante el mundo real. Es la clave del sim-to-real.</p>
+  </section>
+  <section>
+    <h2><span class="n">04</span>La parte difícil (honesto)</h2>
+    <ul>
+      <li><b>Entrenar RL pide GPU</b> (gaming o cloud): el robot no entrena solo.</li>
+      <li>El <b>sim-to-real</b> (calibrar actuadores, IMU, fricción) es el 80% del trabajo.</li>
+      <li>Este kit es <b>didáctico</b> (equilibrio), no una marcha completa.</li>
+    </ul>
+    <p>Para hardware probado parte de <b>Zeroth Bot</b> (MIT, ~$350) o <b>Berkeley Humanoid Lite</b> (transfer zero-shot sim→real).</p>
+  </section>
+  <section class="ok" style="border-radius:16px;border:1px solid #d7f0df">
+    <h2><span class="n">05</span>Llévatelo</h2>
+    <p>Kit con <code>gait.py</code> (RL), <code>deploy.py</code> (sim-to-real), <code>firmware/walker.ino</code> (ESP32) y la BOM. Un camino honesto de la idea al robot que camina.</p>
+    <div class="cta"><a class="btn p" href="esteban-baquero-playbook-robot-bipedo-v1.0.zip" download>⬇ Descargar el kit (.zip)</a></div>
+  </section>
+</main>
+<div class="bar"></div>
+<footer>
+  <p><b>Esteban Baquero</b> — De una idea a un sistema que funciona.</p>
+  <p style="margin-top:8px"><a href="https://estebanbaquero.com">estebanbaquero.com</a> · ¿Te sirvió? <a href="https://github.com/Estebens22">Sígueme y dale una ⭐ en GitHub</a></p>
+</footer>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    navigator.clipboard.writeText(b.parentElement.querySelector('code').innerText).then(function(){b.textContent='copiado ✓';setTimeout(function(){b.textContent='copiar'},1500)});
+  });
+});
+</script>
+</body>
+</html>
