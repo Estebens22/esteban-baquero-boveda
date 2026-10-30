@@ -1,0 +1,2 @@
+# Sin dependencias: orchestrator.py usa solo la librería estándar de Python 3.8+.
+# (La llamada al LLM va por urllib; por eso no necesitas instalar nada.)

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tu primer equipo de agentes · La Bóveda · Esteban Baquero</title>
+<meta name="description" content="De prompts sueltos a un equipo de agentes con roles, estado compartido y herramientas que ejecuta una tarea de principio a fin. Guía + código ejecutable.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tu primer equipo de agentes — La Bóveda de Esteban Baquero">
+<meta property="og:description" content="Orquesta varios agentes de IA que trabajan juntos. Guía + código que corre sin instalar nada.">
+<meta property="og:url" content="https://estebanbaquero.com/boveda/equipo-de-agentes.html">
+<link rel="stylesheet" href="../assets/boveda.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">La Bóveda · Agentes</div>
+    <h1>Tu primer equipo de agentes.</h1>
+    <p class="lead">De "un chatbot que responde" a un equipo de agentes con roles, memoria compartida y herramientas que ejecuta una tarea real de principio a fin. Con código que corre en 10 segundos — sin instalar nada.</p>
+    <div><span class="tag">Python</span><span class="tag">LLM</span><span class="tag">Orquestación</span><span class="tag">En producción</span></div>
+    <div class="cta">
+      <a class="btn p" href="esteban-baquero-playbook-agentes-v1.0.zip" download>⬇ Descargar el kit</a>
+      <a class="btn g" href="README.md">Ver la guía</a>
+    </div>
+  </div>
+</header>
+<div class="bar"></div>
+<main>
+  <section>
+    <h2><span class="n">01</span>La idea</h2>
+    <p>Un <b>orquestador</b> reparte la tarea entre agentes con un rol claro, que comparten un <code>state</code> y se pasan el trabajo. Lo <b>determinista</b> va en código (herramientas); el <b>criterio</b> va en el modelo.</p>
+    <pre><button class="copy">copiar</button><code>tarea → [Investiga] → [Analiza] → [Construye] → [Valida] → resultado
+            usa tools            state compartido entre todos</code></pre>
+  </section>
+  <section>
+    <h2><span class="n">02</span>Corré el ejemplo en 10 segundos</h2>
+    <p>El kit trae <code>orchestrator.py</code> — <b>solo librería estándar de Python</b>. Corre en modo MOCK sin API key:</p>
+    <pre><button class="copy">copiar</button><code>cd kit
+python3 orchestrator.py "Planea el lanzamiento de mi newsletter"</code></pre>
+    <p>Para respuestas reales, poné tu <code>OPENAI_API_KEY</code> (funciona con cualquier API estilo OpenAI).</p>
+  </section>
+  <section>
+    <h2><span class="n">03</span>Las 3 decisiones que importan</h2>
+    <h3>Roles con una responsabilidad</h3>
+    <p>Un agente que hace todo = un prompt gigante y frágil. Dividí por verbo: investiga / analiza / construye / valida.</p>
+    <h3>Estado compartido explícito</h3>
+    <p>Los agentes se pasan un <code>state</code> (dict), no "se adivinan". Eso lo hace depurable.</p>
+    <h3>Determinista vs criterio</h3>
+    <p>Lo que se puede calcular va en <b>código/tools</b>; el juicio va en el <b>modelo</b>.</p>
+  </section>
+  <section>
+    <h2><span class="n">04</span>Costo, latencia y errores</h2>
+    <ul>
+      <li>Menos pasos y modelo más chico donde alcance.</li>
+      <li><b>Cortá temprano</b>: si Valida dice OK, no sigas.</li>
+      <li>Reintentos con límite y timeout en cada llamada (nada de loops infinitos).</li>
+      <li>Medí tokens por corrida y tiempo por agente.</li>
+    </ul>
+  </section>
+  <section class="ok" style="border-radius:16px;border:1px solid #d7f0df">
+    <h2><span class="n">05</span>Llevátelo</h2>
+    <p>Kit con <code>orchestrator.py</code>, <code>.env.example</code> y guía. Combinalo con <b>Prompts que se comportan como software</b> para salidas tipadas y evals.</p>
+    <div class="cta"><a class="btn p" href="esteban-baquero-playbook-agentes-v1.0.zip" download>⬇ Descargar el kit (.zip)</a></div>
+  </section>
+</main>
+<div class="bar"></div>
+<footer>
+  <p><b>Esteban Baquero</b> — De una idea a un sistema que funciona.</p>
+  <p style="margin-top:8px"><a href="https://estebanbaquero.com">estebanbaquero.com</a> · ¿Te sirvió? <a href="https://github.com/Estebens22">Seguime y dale ⭐ en GitHub</a></p>
+</footer>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    navigator.clipboard.writeText(b.parentElement.querySelector('code').innerText).then(function(){b.textContent='copiado ✓';setTimeout(function(){b.textContent='copiar'},1500)});
+  });
+});
+</script>
+</body>
+</html>
