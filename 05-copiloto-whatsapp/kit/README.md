@@ -3,7 +3,7 @@
 Un copiloto que **entiende, responde y ejecuta acciones** por WhatsApp. Corre
 con **solo Python** (librería estándar). Sin dependencias.
 
-## Corré el ejemplo (10 segundos)
+## Corre el ejemplo (10 segundos)
 ```bash
 python3 copiloto.py --demo     # self-check: firma, parser e intenciones
 python3 copiloto.py            # procesa los webhooks de muestra de entradas/
@@ -32,7 +32,7 @@ python3 copiloto.py            # procesa los webhooks de muestra de entradas/
 4. **La acción — lo real.** Consultar saldo, agendar, escalar a un humano. En
    el kit se imprime; en producción conectás tu API/CRM/calendario ahí mismo.
 
-## Agregá una intención (sin tocar código)
+## Agrega una intención (sin tocar código)
 En `intenciones.json`, dentro de `"intenciones"`:
 ```json
 {
@@ -45,10 +45,10 @@ En `intenciones.json`, dentro de `"intenciones"`:
 Ponelo **arriba** si debe ganarle a intenciones más generales.
 
 ## De este kit a producción
-Reemplazás el "disparador de archivos" por tu endpoint POST real (el que
+Reemplazas el "disparador de archivos" por tu endpoint POST real (el que
 registrás en Meta), verificás la firma con tu `APP_SECRET`, y en `ejecutar()`
-enganchás tus acciones reales. La firma, el parser y el ruteo **no cambian**.
+enganchas tus acciones reales. La firma, el parser y el ruteo **no cambian**.
 
 ---
 **Esteban Baquero** — De una idea a un sistema que funciona.
-¿Te sirvió? [Seguime y dale ⭐ en GitHub](https://github.com/Estebens22)
+¿Te sirvió? [Sígueme y dale ⭐ en GitHub](https://github.com/Estebens22)

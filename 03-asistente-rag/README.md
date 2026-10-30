@@ -9,7 +9,7 @@ Un asistente que responde sobre **TUS** documentos: ingesta → recuperación �
 - La **recuperación** (TF-IDF + coseno, sin vector DB ni dependencias).
 - La **respuesta con citas** a la fuente — modo MOCK sin API key, o LLM real con `OPENAI_API_KEY`.
 
-## Corré el ejemplo
+## Corre el ejemplo
 ```bash
 cd kit
 python3 rag.py --demo
@@ -17,7 +17,7 @@ python3 rag.py "¿cuál es la política de devoluciones?"
 ```
 
 ## La idea en una línea
-RAG no es "meter todo en el prompt": es **buscar lo relevante en tus datos** y dejar que el modelo responda con esa evidencia. Así no alucina y podés auditar de dónde salió cada afirmación.
+RAG no es "meter todo en el prompt": es **buscar lo relevante en tus datos** y dejar que el modelo responda con esa evidencia. Así no alucina y puedes auditar de dónde salió cada afirmación.
 
 ## Los errores clásicos (honesto)
 - **Chunks sin solape** → se corta el contexto a la mitad. Por eso el kit usa solape.
@@ -26,4 +26,4 @@ RAG no es "meter todo en el prompt": es **buscar lo relevante en tus datos** y d
 
 ---
 **Esteban Baquero** — De una idea a un sistema que funciona.
-¿Te sirvió? [Seguime y dale ⭐ en GitHub](https://github.com/Estebens22)
+¿Te sirvió? [Sígueme y dale ⭐ en GitHub](https://github.com/Estebens22)

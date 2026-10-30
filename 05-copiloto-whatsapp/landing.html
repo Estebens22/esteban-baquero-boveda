@@ -33,12 +33,12 @@
     <pre><button class="copy">copiar</button><code>webhook de WhatsApp → [verificar firma] → [entender intención] → acción (consultar/agendar/escalar)</code></pre>
   </section>
   <section>
-    <h2><span class="n">02</span>Corré el ejemplo en 10 segundos</h2>
+    <h2><span class="n">02</span>Corre el ejemplo en 10 segundos</h2>
     <p>El kit trae <code>copiloto.py</code> — <b>solo librería estándar</b>. Trae webhooks de muestra en el formato <b>real</b> de WhatsApp Cloud API e intenciones en <code>intenciones.json</code>:</p>
     <pre><button class="copy">copiar</button><code>cd kit
 python3 copiloto.py --demo
 python3 copiloto.py</code></pre>
-    <p>El <code>--demo</code> valida la firma HMAC, el parser del webhook y el ruteo de intención con 10 casos borde. En producción enganchás tu endpoint POST real y tus acciones.</p>
+    <p>El <code>--demo</code> valida la firma HMAC, el parser del webhook y el ruteo de intención con 10 casos borde. En producción enganchas tu endpoint POST real y tus acciones.</p>
   </section>
   <section>
     <h2><span class="n">03</span>Las 4 piezas que importan</h2>
@@ -46,21 +46,21 @@ python3 copiloto.py</code></pre>
     <p>Meta firma cada webhook con HMAC-SHA256 en <code>X-Hub-Signature-256</code>. <b>Verificala antes de confiar</b>: sin eso, cualquiera suplanta a Meta y le dispara acciones a tu copiloto. El kit compara con <code>hmac.compare_digest</code> (tiempo constante), nunca con <code>==</code>.</p>
     <h3>El parser</h3>
     <p>El mensaje viene anidado en <code>entry[].changes[].value.messages[]</code>. Y a veces el webhook <b>no trae mensaje</b>: es un acuse de "entregado/leído". El kit lo detecta y no revienta.</p>
-    <h3>El cerebro, en intenciones que editás</h3>
+    <h3>El cerebro, en intenciones que editas</h3>
     <p><code>intenciones.json</code> se evalúa en orden: la primera intención que matchea gana. Se pliegan tildes y mayúsculas (<code>SALDO</code> = <code>saldo</code>). <b>Cambiás el comportamiento sin tocar código.</b></p>
     <h3>La acción final</h3>
-    <p>Consultar saldo, agendar una cita, escalar a un humano. El kit lo simula; vos enganchás tu API/CRM/calendario en el mismo punto.</p>
+    <p>Consultar saldo, agendar una cita, escalar a un humano. El kit lo simula; tú enganchas tu API/CRM/calendario en el mismo punto.</p>
   </section>
   <section class="ok" style="border-radius:16px;border:1px solid #d7f0df">
     <h2><span class="n">04</span>Llevátelo</h2>
-    <p>Kit con <code>copiloto.py</code>, <code>intenciones.json</code> de ejemplo y webhooks de muestra en formato real. Reemplazá las intenciones por las tuyas y conectá tu endpoint real: ya tenés un copiloto que atiende y ejecuta en WhatsApp.</p>
+    <p>Kit con <code>copiloto.py</code>, <code>intenciones.json</code> de ejemplo y webhooks de muestra en formato real. Reemplaza las intenciones por las tuyas y conectá tu endpoint real: ya tienes un copiloto que atiende y ejecuta en WhatsApp.</p>
     <div class="cta"><a class="btn p" href="esteban-baquero-playbook-copiloto-v1.0.zip" download>⬇ Descargar el kit (.zip)</a></div>
   </section>
 </main>
 <div class="bar"></div>
 <footer>
   <p><b>Esteban Baquero</b> — De una idea a un sistema que funciona.</p>
-  <p style="margin-top:8px"><a href="https://estebanbaquero.com">estebanbaquero.com</a> · ¿Te sirvió? <a href="https://github.com/Estebens22">Seguime y dale ⭐ en GitHub</a></p>
+  <p style="margin-top:8px"><a href="https://estebanbaquero.com">estebanbaquero.com</a> · ¿Te sirvió? <a href="https://github.com/Estebens22">Sígueme y dale ⭐ en GitHub</a></p>
 </footer>
 <script>
 document.querySelectorAll('.copy').forEach(function(b){

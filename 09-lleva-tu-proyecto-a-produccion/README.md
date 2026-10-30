@@ -6,7 +6,7 @@
 Este es el patrón real con el que vive [estebanbaquero.com](https://estebanbaquero.com): un contenedor nginx detrás de un reverse-proxy con TLS automático. Sin plataformas caras ni magia. Honesto: incluye los errores típicos que te vas a encontrar (403 por permisos, disco lleno por logs, cert que no emite).
 
 ## Qué vas a lograr
-`Dockerfile → contenedor → reverse-proxy con TLS → dominio (DNS) → logs limitados → healthcheck`. Al final tenés tu app en vivo con HTTPS y dominio propio.
+`Dockerfile → contenedor → reverse-proxy con TLS → dominio (DNS) → logs limitados → healthcheck`. Al final tienes tu app en vivo con HTTPS y dominio propio.
 
 ## Requisitos
 - Un servidor (VPS) con **Docker**.
@@ -15,13 +15,13 @@ Este es el patrón real con el que vive [estebanbaquero.com](https://estebanbaqu
 
 ## Paso a paso
 
-**1. Contenerizá tu app.** Usá `kit/Dockerfile.example` como base (ajustá a tu stack). La clave anti-403:
+**1. Contenerizá tu app.** Usa `kit/Dockerfile.example` como base (ajustá a tu stack). La clave anti-403:
 ```
 RUN chmod -R a+rX /usr/share/nginx/html
 ```
 nginx corre como usuario no-root; si los archivos vienen con permisos `600`, da **403**. El `a+rX` lo evita.
 
-**2. Build + run con 1 comando.** Usá `kit/deploy.sh`:
+**2. Build + run con 1 comando.** Usa `kit/deploy.sh`:
 ```
 ./deploy.sh mi-app 8080
 ```
@@ -34,7 +34,7 @@ Hace build, corre el contenedor con **restart automático** y **logs limitados**
 
 **4. DNS.** Apuntá un registro **A** de `tu-dominio.com` (y `www`) a la IP del servidor. Si usás Cloudflare, dejalo **DNS-only** (nube gris) para que el reverse-proxy pueda emitir el certificado por el challenge HTTP.
 
-**5. TLS automático + reverse-proxy.** Agregá el bloque de `kit/Caddyfile.snippet` a tu Caddyfile y recargá Caddy. El certificado Let's Encrypt se emite solo al primer hit.
+**5. TLS automático + reverse-proxy.** Agrega el bloque de `kit/Caddyfile.snippet` a tu Caddyfile y recargá Caddy. El certificado Let's Encrypt se emite solo al primer hit.
 
 **6. Verificá en vivo** (no contra el pipeline verde, contra el dominio real):
 ```
@@ -51,7 +51,7 @@ curl -s -o /dev/null -w "%{http_code}\n" https://tu-dominio.com/
 | Redeploy tumba prod | sin rollback | guardá la imagen anterior / `git revert` + redeploy |
 
 ## Checklist
-Ver `kit/checklist.md` — recorré todo antes de anunciar "está en vivo".
+Ver `kit/checklist.md` — recorre todo antes de anunciar "está en vivo".
 
 ## Descargas
 - **Kit:** `kit/` (deploy.sh, Dockerfile.example, Caddyfile.snippet, checklist, .env.example).

@@ -7,7 +7,7 @@ python3 rag.py --demo                       # self-check de la recuperación
 python3 rag.py "¿cuál es la política de devoluciones?"
 ```
 
-- `docs/` — tus documentos (`.md` o `.txt`). Reemplazá los de muestra por los tuyos.
+- `docs/` — tus documentos (`.md` o `.txt`). Reemplaza los de muestra por los tuyos.
 - Sin `OPENAI_API_KEY` → modo **MOCK**: responde extractivo mostrando los trozos y de qué archivo salieron.
 - Con `OPENAI_API_KEY` → el modelo redacta la respuesta **citando** las fuentes recuperadas:
 

@@ -3,7 +3,7 @@
 Un flujo que **lee, decide y actúa** sobre tareas repetitivas. Tres piezas:
 disparador → decisión → acción. Corre con **solo Python** (librería estándar).
 
-## Corré el ejemplo (10 segundos)
+## Corre el ejemplo (10 segundos)
 ```bash
 python3 flujo.py --demo        # self-check: valida el motor de reglas
 python3 flujo.py               # procesa entradas/ y muestra el plan
@@ -24,7 +24,7 @@ python3 flujo.py --aplicar     # "ejecuta" las acciones (las escribe a acciones.
 3. **Acción:** `escalar`, `avisar`, `registrar`, `responder`, `revisar`. En el
    kit se imprimen/loguean; en producción conectás tu API/CRM/Slack ahí.
 
-## Agregá una regla (sin tocar código)
+## Agrega una regla (sin tocar código)
 En `reglas.json`, dentro de `"reglas"`:
 ```json
 {
@@ -35,7 +35,7 @@ En `reglas.json`, dentro de `"reglas"`:
 ```
 
 ## Los errores clásicos (honesto)
-- **Orden de reglas:** la primera que matchea gana. Poné las específicas arriba
+- **Orden de reglas:** la primera que matchea gana. Pon las específicas arriba
   (factura grande) y las generales abajo (factura normal).
 - **Tildes y mayúsculas:** se pliegan (`URGENTE` = `urgente`, `envíos` = `envios`)
   para que el match no dependa de cómo venga escrito.
@@ -43,4 +43,4 @@ En `reglas.json`, dentro de `"reglas"`:
 
 ---
 **Esteban Baquero** — De una idea a un sistema que funciona.
-¿Te sirvió? [Seguime y dale ⭐ en GitHub](https://github.com/Estebens22)
+¿Te sirvió? [Sígueme y dale ⭐ en GitHub](https://github.com/Estebens22)

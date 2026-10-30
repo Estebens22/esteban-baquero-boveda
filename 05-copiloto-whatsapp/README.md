@@ -12,7 +12,7 @@ Python, sin instalar nada.
 - El **cerebro** que entiende la intención del mensaje.
 - Las **acciones** que puede ejecutar: consultar, agendar, escalar a un humano.
 
-## Corré el ejemplo
+## Corre el ejemplo
 ```bash
 cd kit
 python3 copiloto.py --demo     # valida firma, parser e intenciones
@@ -35,4 +35,4 @@ piezas alrededor del modelo, no en el modelo.
 
 ---
 **Esteban Baquero** — De una idea a un sistema que funciona.
-¿Te sirvió? [Seguime y dale ⭐ en GitHub](https://github.com/Estebens22)
+¿Te sirvió? [Sígueme y dale ⭐ en GitHub](https://github.com/Estebens22)

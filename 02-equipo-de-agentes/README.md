@@ -3,7 +3,7 @@
 
 **Categoría:** Agentes · **Estado:** En producción · **Nivel:** intermedio
 
-Una guía para que **vos lo armes y experimentes**: pasás de prompts sueltos a un sistema donde varios agentes especializados (Investiga, Analiza, Construye, Valida) se reparten el trabajo, comparten un estado y devuelven un resultado verificable.
+Una guía para que **tú lo armes y experimentes**: pasas de prompts sueltos a un sistema donde varios agentes especializados (Investiga, Analiza, Construye, Valida) se reparten el trabajo, comparten un estado y devuelven un resultado verificable.
 
 ## Qué vas a lograr
 Un **orquestador** que recibe una tarea, la reparte entre agentes con un rol claro, les pasa contexto por un `state` compartido, usa herramientas (código determinista) y valida el resultado. Queda claro qué es **criterio del modelo** y qué es **código**.
@@ -14,7 +14,7 @@ tarea → [Investiga] → [Analiza] → [Construye] → [Valida] → resultado
             │ usa tools (código)        state compartido entre todos
 ```
 
-## Corré el ejemplo en 10 segundos
+## Corre el ejemplo en 10 segundos
 El kit trae `orchestrator.py` — **solo librería estándar de Python** (nada que instalar). Corre en **modo MOCK** sin API key:
 ```bash
 cd kit
@@ -39,7 +39,7 @@ Vas a ver cada agente tomando el trabajo del anterior. Para respuestas reales, p
 - **Router:** en vez de secuencia fija, un agente que decide a quién llamar según la tarea.
 
 ## Descargas
-Kit en `kit/` (orchestrator.py, .env.example, requirements, README) y el **ZIP** con todo. Combinalo con el **10 · Prompts que se comportan como software** para salidas tipadas y evals.
+Kit en `kit/` (orchestrator.py, .env.example, requirements, README) y el **ZIP** con todo. Combínalo con el **10 · Prompts que se comportan como software** para salidas tipadas y evals.
 
 ---
 Hecho por **Esteban Baquero** · [estebanbaquero.com](https://estebanbaquero.com) · De una idea a un sistema que funciona.

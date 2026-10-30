@@ -8,10 +8,10 @@ segundos con solo Python, sin instalar nada.
 
 ## Qué vas a construir
 - El **disparador** (correo, archivo, webhook) que mete el trabajo al flujo.
-- La **lógica de decisión** en reglas declarativas — las editás sin tocar código.
+- La **lógica de decisión** en reglas declarativas — las editas sin tocar código.
 - La **acción final**: registrar, responder, avisar o escalar.
 
-## Corré el ejemplo
+## Corre el ejemplo
 ```bash
 cd kit
 python3 flujo.py --demo        # valida el motor de reglas
@@ -30,4 +30,4 @@ que cambies las reglas sin reprogramar y conectes cada pieza a lo tuyo.
 
 ---
 **Esteban Baquero** — De una idea a un sistema que funciona.
-¿Te sirvió? [Seguime y dale ⭐ en GitHub](https://github.com/Estebens22)
+¿Te sirvió? [Sígueme y dale ⭐ en GitHub](https://github.com/Estebens22)

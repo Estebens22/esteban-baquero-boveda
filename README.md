@@ -8,7 +8,7 @@ Monorepo público: cada carpeta es un recurso independiente con su **guía**, su
 Si te sirve, **seguime y dale ⭐**: [github.com/Estebens22](https://github.com/Estebens22). · Web: [estebanbaquero.com](https://estebanbaquero.com) · La Bóveda en vivo: [estebanbaquero.com/la-boveda.html](https://estebanbaquero.com/la-boveda.html)
 
 ## Qué es cada recurso
-Una **guía práctica para que vos lo hagas y experimentes**: te explico cómo construirlo, te doy las herramientas y el código, y sos vos quien lo arma y lo adapta. No es un producto cerrado; es una receta abierta para aprender haciendo.
+Una **guía práctica para que tú lo hagas y experimentes**: te explico cómo construirlo, te doy las herramientas y el código, y eres tú quien lo arma y lo adapta. No es un producto cerrado; es una receta abierta para aprender haciendo.
 
 **Estados** (cada recurso lleva uno): `Experimento` · `Prototipo` · `En producción`.
 

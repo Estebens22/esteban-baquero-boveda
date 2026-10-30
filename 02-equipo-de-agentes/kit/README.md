@@ -15,6 +15,6 @@ python3 orchestrator.py "..."
 Compatible con cualquier API estilo OpenAI (cambiá `OPENAI_BASE_URL`/`OPENAI_MODEL`).
 
 ## Cómo extenderlo
-- **Agregá un agente:** una función `def mi_agente(state): ...` y sumala a `AGENTES`.
-- **Agregá una herramienta:** una función determinista (como `tool_buscar`) que el agente llama.
+- **Agrega un agente:** una función `def mi_agente(state): ...` y sumala a `AGENTES`.
+- **Agrega una herramienta:** una función determinista (como `tool_buscar`) que el agente llama.
 - **Controlá costo/latencia:** menos pasos, modelo más chico, o cortá temprano si `Valida` dice OK.
