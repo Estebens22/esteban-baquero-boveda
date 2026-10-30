@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asistente RAG sobre tus documentos · La Bóveda · Esteban Baquero</title>
+<meta name="description" content="Un asistente que responde sobre TUS documentos con citas, sin inventar. Ingesta + recuperación + respuesta. Guía + código ejecutable sin dependencias.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Asistente RAG sobre tus documentos — La Bóveda de Esteban Baquero">
+<meta property="og:description" content="Recupera lo relevante de tus datos y responde con evidencia citada. Código que corre sin instalar nada.">
+<meta property="og:url" content="https://estebanbaquero.com/la-boveda">
+<link rel="stylesheet" href="../assets/boveda.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">La Bóveda · RAG</div>
+    <h1>Asistente RAG sobre tus documentos.</h1>
+    <p class="lead">Un asistente que responde sobre <b style="color:#fff">tus</b> documentos — con citas a la fuente, sin inventar. Recupera lo relevante y deja que el modelo responda con esa evidencia. Corre en 10 segundos, sin instalar nada.</p>
+    <div><span class="tag">Python</span><span class="tag">RAG</span><span class="tag">Sin dependencias</span><span class="tag">En producción</span></div>
+    <div class="cta">
+      <a class="btn p" href="esteban-baquero-playbook-rag-v1.0.zip" download>⬇ Descargar el kit</a>
+      <a class="btn g" href="README.md">Ver la guía</a>
+    </div>
+  </div>
+</header>
+<div class="bar"></div>
+<main>
+  <section>
+    <h2><span class="n">01</span>La idea</h2>
+    <p>RAG no es "meter todo en el prompt". Es <b>buscar lo relevante en tus datos</b> y dejar que el modelo responda <b>con esa evidencia</b> — y citándola. Así no alucina y podés auditar de dónde salió cada afirmación.</p>
+    <pre><button class="copy">copiar</button><code>pregunta → [recuperar trozos de tus docs] → [responder citando] → respuesta con fuentes</code></pre>
+  </section>
+  <section>
+    <h2><span class="n">02</span>Corré el ejemplo en 10 segundos</h2>
+    <p>El kit trae <code>rag.py</code> — <b>solo librería estándar</b>. Trae documentos de muestra en <code>docs/</code>:</p>
+    <pre><button class="copy">copiar</button><code>cd kit
+python3 rag.py --demo
+python3 rag.py "¿cuál es la política de devoluciones?"</code></pre>
+    <p>Sin API key responde en modo <b>MOCK</b> (extractivo, mostrando la fuente). Con <code>OPENAI_API_KEY</code> el modelo redacta citando.</p>
+  </section>
+  <section>
+    <h2><span class="n">03</span>Las 3 piezas que importan</h2>
+    <h3>Ingesta con solape</h3>
+    <p>Trocear sin solape corta el contexto a la mitad. El kit solapa los chunks para no perder la frase que cruza el corte.</p>
+    <h3>Recuperación que entiende sin tildes</h3>
+    <p>TF-IDF + coseno, plegando acentos: el usuario escribe "envios" y encuentra "envíos".</p>
+    <h3>Respuesta anclada a la evidencia</h3>
+    <p>El system prompt obliga al modelo a usar <b>solo</b> lo recuperado y a citar <code>[archivo#n]</code>. Si no alcanza, lo dice.</p>
+  </section>
+  <section class="ok" style="border-radius:16px;border:1px solid #d7f0df">
+    <h2><span class="n">04</span>Llevátelo</h2>
+    <p>Kit con <code>rag.py</code>, <code>docs/</code> de muestra y guía. Reemplazá los docs por los tuyos y ya tenés un asistente sobre tu conocimiento.</p>
+    <div class="cta"><a class="btn p" href="esteban-baquero-playbook-rag-v1.0.zip" download>⬇ Descargar el kit (.zip)</a></div>
+  </section>
+</main>
+<div class="bar"></div>
+<footer>
+  <p><b>Esteban Baquero</b> — De una idea a un sistema que funciona.</p>
+  <p style="margin-top:8px"><a href="https://estebanbaquero.com">estebanbaquero.com</a> · ¿Te sirvió? <a href="https://github.com/Estebens22">Seguime y dale ⭐ en GitHub</a></p>
+</footer>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    navigator.clipboard.writeText(b.parentElement.querySelector('code').innerText).then(function(){b.textContent='copiado ✓';setTimeout(function(){b.textContent='copiar'},1500)});
+  });
+});
+</script>
+</body>
+</html>
