@@ -1,0 +1,26 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "0",
+      "changes": [
+        {
+          "field": "messages",
+          "value": {
+            "messaging_product": "whatsapp",
+            "contacts": [ { "profile": { "name": "Ana" }, "wa_id": "573001112233" } ],
+            "messages": [
+              {
+                "from": "573001112233",
+                "id": "wamid.BBB",
+                "timestamp": "1730300100",
+                "type": "text",
+                "text": { "body": "hola, quiero saber mi SALDO disponible" }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "intenciones": [
+    {
+      "nombre": "hablar_con_humano",
+      "claves": ["asesor", "humano", "persona real", "hablar con alguien", "agente"],
+      "accion": "escalar",
+      "responder": "Claro, te paso con una persona del equipo. Dame un momento 🙌"
+    },
+    {
+      "nombre": "consulta_saldo",
+      "claves": ["saldo", "cuánto tengo", "mi cuenta", "disponible"],
+      "accion": "consultar_saldo",
+      "responder": "Tu saldo disponible es $125.000. ¿Querés algo más?"
+    },
+    {
+      "nombre": "agendar",
+      "claves": ["agendar", "cita", "turno", "reservar", "disponibilidad"],
+      "accion": "crear_evento",
+      "responder": "Perfecto. Tengo cupo mañana 10:00 y 15:00. ¿Cuál te sirve?"
+    },
+    {
+      "nombre": "saludo",
+      "claves": ["hola", "buenas", "buenos días", "buenas tardes", "qué tal"],
+      "accion": "saludar",
+      "responder": "¡Hola! Soy el copiloto. Puedo consultar tu saldo, agendar una cita o pasarte con un asesor."
+    }
+  ],
+  "fallback": {
+    "nombre": "fallback",
+    "claves": [],
+    "accion": "responder_generico",
+    "responder": "No estoy seguro de haberte entendido 🤔. Puedo: ver tu *saldo*, *agendar* una cita o pasarte con un *asesor*. ¿Qué necesitás?"
+  }
+}

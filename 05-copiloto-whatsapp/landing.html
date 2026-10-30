@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copiloto de IA en WhatsApp · La Bóveda · Esteban Baquero</title>
+<meta name="description" content="Un copiloto que atiende por WhatsApp: entiende, responde y ejecuta acciones reales. Firma del webhook + intención + acción. Guía + código ejecutable sin dependencias.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Copiloto de IA en WhatsApp — La Bóveda de Esteban Baquero">
+<meta property="og:description" content="No solo chatea: hace cosas. Verifica la firma del webhook, entiende la intención y ejecuta la acción. Corre sin instalar nada.">
+<meta property="og:url" content="https://estebanbaquero.com/la-boveda">
+<link rel="stylesheet" href="../assets/boveda.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">La Bóveda · Automatización</div>
+    <h1>Copiloto de IA en WhatsApp.</h1>
+    <p class="lead">Donde está la gente. Un asistente que <b style="color:#fff">entiende, responde y ejecuta acciones reales</b> por WhatsApp — no solo chatea. Corre en 10 segundos, sin instalar nada.</p>
+    <div><span class="tag">Python</span><span class="tag">WhatsApp Cloud API</span><span class="tag">Sin dependencias</span><span class="tag">En producción</span></div>
+    <div class="cta">
+      <a class="btn p" href="esteban-baquero-playbook-copiloto-v1.0.zip" download>⬇ Descargar el kit</a>
+      <a class="btn g" href="README.md">Ver la guía</a>
+    </div>
+  </div>
+</header>
+<div class="bar"></div>
+<main>
+  <section>
+    <h2><span class="n">01</span>La idea</h2>
+    <p>Un copiloto útil no es el que mejor conversa: es el que <b>hace cosas de forma segura</b> en el canal donde ya está tu cliente. La diferencia está en las cuatro piezas alrededor del modelo, no en el modelo.</p>
+    <pre><button class="copy">copiar</button><code>webhook de WhatsApp → [verificar firma] → [entender intención] → acción (consultar/agendar/escalar)</code></pre>
+  </section>
+  <section>
+    <h2><span class="n">02</span>Corré el ejemplo en 10 segundos</h2>
+    <p>El kit trae <code>copiloto.py</code> — <b>solo librería estándar</b>. Trae webhooks de muestra en el formato <b>real</b> de WhatsApp Cloud API e intenciones en <code>intenciones.json</code>:</p>
+    <pre><button class="copy">copiar</button><code>cd kit
+python3 copiloto.py --demo
+python3 copiloto.py</code></pre>
+    <p>El <code>--demo</code> valida la firma HMAC, el parser del webhook y el ruteo de intención con 10 casos borde. En producción enganchás tu endpoint POST real y tus acciones.</p>
+  </section>
+  <section>
+    <h2><span class="n">03</span>Las 4 piezas que importan</h2>
+    <h3>El canal — y su firma</h3>
+    <p>Meta firma cada webhook con HMAC-SHA256 en <code>X-Hub-Signature-256</code>. <b>Verificala antes de confiar</b>: sin eso, cualquiera suplanta a Meta y le dispara acciones a tu copiloto. El kit compara con <code>hmac.compare_digest</code> (tiempo constante), nunca con <code>==</code>.</p>
+    <h3>El parser</h3>
+    <p>El mensaje viene anidado en <code>entry[].changes[].value.messages[]</code>. Y a veces el webhook <b>no trae mensaje</b>: es un acuse de "entregado/leído". El kit lo detecta y no revienta.</p>
+    <h3>El cerebro, en intenciones que editás</h3>
+    <p><code>intenciones.json</code> se evalúa en orden: la primera intención que matchea gana. Se pliegan tildes y mayúsculas (<code>SALDO</code> = <code>saldo</code>). <b>Cambiás el comportamiento sin tocar código.</b></p>
+    <h3>La acción final</h3>
+    <p>Consultar saldo, agendar una cita, escalar a un humano. El kit lo simula; vos enganchás tu API/CRM/calendario en el mismo punto.</p>
+  </section>
+  <section class="ok" style="border-radius:16px;border:1px solid #d7f0df">
+    <h2><span class="n">04</span>Llevátelo</h2>
+    <p>Kit con <code>copiloto.py</code>, <code>intenciones.json</code> de ejemplo y webhooks de muestra en formato real. Reemplazá las intenciones por las tuyas y conectá tu endpoint real: ya tenés un copiloto que atiende y ejecuta en WhatsApp.</p>
+    <div class="cta"><a class="btn p" href="esteban-baquero-playbook-copiloto-v1.0.zip" download>⬇ Descargar el kit (.zip)</a></div>
+  </section>
+</main>
+<div class="bar"></div>
+<footer>
+  <p><b>Esteban Baquero</b> — De una idea a un sistema que funciona.</p>
+  <p style="margin-top:8px"><a href="https://estebanbaquero.com">estebanbaquero.com</a> · ¿Te sirvió? <a href="https://github.com/Estebens22">Seguime y dale ⭐ en GitHub</a></p>
+</footer>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    navigator.clipboard.writeText(b.parentElement.querySelector('code').innerText).then(function(){b.textContent='copiado ✓';setTimeout(function(){b.textContent='copiar'},1500)});
+  });
+});
+</script>
+</body>
+</html>

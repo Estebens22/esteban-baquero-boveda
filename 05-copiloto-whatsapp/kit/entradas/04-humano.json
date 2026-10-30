@@ -1,0 +1,26 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "0",
+      "changes": [
+        {
+          "field": "messages",
+          "value": {
+            "messaging_product": "whatsapp",
+            "contacts": [ { "profile": { "name": "Lucía" }, "wa_id": "573117778899" } ],
+            "messages": [
+              {
+                "from": "573117778899",
+                "id": "wamid.DDD",
+                "timestamp": "1730300300",
+                "type": "text",
+                "text": { "body": "esto no me sirve, pásame con un asesor por favor" }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
